@@ -53,7 +53,7 @@ void loop(){
 * Funkce, která jen zavolá ostatní zobrazovací funkce
 * 
 * Parametry:
-*  číslo uint16_t
+*  číslo int16_t
 * 
 * Vrací:
 *  none (volá zobrazovací funkce)
@@ -71,7 +71,7 @@ void zobraz(int16_t x) {
 * Funkce pro zobrazení desítkové hodnoty čísla na displeji 
 * 
 * Parametry:
-*  číslo v desítkovém tvaru
+*  číslo uint16_t
 * 
 * Vrací:
 *  none
