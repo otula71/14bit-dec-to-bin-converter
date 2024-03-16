@@ -33,8 +33,8 @@ void loop(){
    zobraz(cislo);
    break;
 
-  case 6:
-   cislo=0; // HIGH na obou pinech
+  case 6: // HIGH na obou pinech
+   cislo=0; 
    zobraz(cislo);
    break;
 
