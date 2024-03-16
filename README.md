@@ -1,4 +1,4 @@
-# 14bit decimal to binary converter
+# 14bit decimal to binary converter (Arduino)
 
 Převodník mezi desítkovou a dvojkovou soustavou. Desítková čísla zobrazuje na displeji, dvojková pomocí řady diod.
 
