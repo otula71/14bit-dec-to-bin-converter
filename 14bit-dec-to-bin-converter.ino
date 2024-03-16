@@ -33,7 +33,7 @@ void loop(){
    zobraz(cislo);
    break;
 
-  case 6: // HIGH na obou pinech
+  case 6: // HIGH na obou pinech - funguje jako reset
    cislo=0; 
    zobraz(cislo);
    break;
