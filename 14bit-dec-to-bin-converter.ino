@@ -50,7 +50,7 @@ void loop(){
 /*************************************************************************
 * Název funkce: zobraz
 **************************************************************************
-* Funkce pro přečtení hodnoty dodané z cislou 
+* Funkce, která jen zavolá ostatní zobrazovací funkce
 * 
 * Parametry:
 *  číslo uint16_t
