@@ -101,8 +101,10 @@ void displej(uint16_t x){
 *  none
 *************************************************************************/
 void led(uint16_t x){
-  uint8_t blok1 = x/256;
-  uint8_t blok2 = x-blok1*256;
+  uint8_t blok1 = x>>8; //tohle by šlo dělat pro člověka jednodušeji jako
+                        //celočíselné dělení 2^8, tedy x/256
+  uint8_t blok2 = x&0xFF; //a tohle jako odečtení předhozího bloku vynásobeného
+                          //zpět číslem 256. Ale binární způsob je přímočařejší
   PORTB = blok1;
   PORTD = blok2;
   }
