@@ -99,12 +99,12 @@ void displej(uint16_t x){
 * 
 * Vrací:
 *  none
+* 
+* Pokud bych na bloku D chtěl využívat sériovou komunikaci, tedy piny 0 a 1,
+* musel bych blok B posunout pouze o 6 řádů a blok D násobit pouze 63
+* a posunout o 2 bity doleva
 *************************************************************************/
 void led(uint16_t x){
-  uint8_t blok1 = x>>8; //tohle by šlo dělat pro člověka jednodušeji jako
-                        //celočíselné dělení 2^8, tedy x/256
-  uint8_t blok2 = x&0xFF; //a tohle jako odečtení předhozího bloku vynásobeného
-                          //zpět číslem 256. Ale binární způsob je přímočařejší
-  PORTB = blok1;
-  PORTD = blok2;
+  PORTB = x>>8;
+  PORTD = x&0xFF;
   }
