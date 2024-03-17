@@ -99,10 +99,6 @@ void displej(uint16_t x){
 * 
 * Vrací:
 *  none
-* 
-* Pokud bych na bloku D chtěl využívat sériovou komunikaci, tedy piny 0 a 1,
-* musel bych blok B posunout pouze o 6 řádů a blok D násobit pouze 63
-* a posunout o 2 bity doleva
 *************************************************************************/
 void led(uint16_t x){
   PORTB = x>>8;
