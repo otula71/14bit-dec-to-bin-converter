@@ -5,7 +5,7 @@ uint8_t cyklus=0;
 
 void setup(){
   DDRD = 255;
-  DDRB = 255; //nastavím všechny digitální piny jako výstupní
+  DDRB = 63; //nastavím všechny digitální piny jako výstupní
   u8g2.begin();
   zobraz(cislo);
 }
