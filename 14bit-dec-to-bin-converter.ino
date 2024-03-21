@@ -4,8 +4,8 @@ int16_t cislo = 0; //používám signed int, aby mohl podtečení nuly srovnat p
 uint8_t cyklus=0;
 
 void setup(){
-  DDRD = 255;
-  DDRB = 63; //nastavím všechny digitální piny jako výstupní
+  DDRD = 0xFF;
+  DDRB = 077; //nastavím všechny digitální piny jako výstupní
   u8g2.begin();
   zobraz(cislo);
 }
