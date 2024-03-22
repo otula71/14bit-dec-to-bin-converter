@@ -87,7 +87,7 @@ void displej(uint16_t x){
   u8g2.print(x); 
   u8g2.setFont(u8g2_font_BBSesque_tf);
   u8g2.setCursor(0, 64);
-  u8g2.print("hex:  "); printHex(x);
+  u8g2.print("hex:  "); u8g2.print(hex(x));
   u8g2.sendBuffer();
   }
 
@@ -110,19 +110,21 @@ void led(uint16_t x){
   }
 
 /*************************************************************************
-* Název funkce: printHex
+* Název funkce: hex
 **************************************************************************
-* Funkce pro zobrazení šestnáctkové hodnoty čísla
+* Funkce pro převod do šestnáctkové soustavy
 * 
 * Parametry:
 *  uint16_t
 * 
 * Vrací:
-*  none (je udělaná primitivně, místo návratu řetězce přímo zobrazuje)
+*  String
 *************************************************************************/
-void printHex(uint16_t x)
-{
-  if (x >= 16)
-    printHex(x / 16);
-  u8g2.print("0123456789ABCDEF"[x % 16]);
+String hex(uint16_t x)
+{String z;
+  while (x > 0) {
+    z=("0123456789ABCDEF"[x % 16])+z;
+    x/=16;}
+    return((z=="")?"0":z);
 }
+
