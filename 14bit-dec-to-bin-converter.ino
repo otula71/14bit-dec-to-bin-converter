@@ -68,7 +68,7 @@ void zobraz(int16_t x) {
 /*************************************************************************
 * Název funkce: displej
 **************************************************************************
-* Funkce pro zobrazení desítkové hodnoty čísla na displeji 
+* Funkce pro zobrazení výpisu na displeji (desítkové+šestnáctkové číslo)
 * 
 * Parametry:
 *  číslo uint16_t
@@ -79,14 +79,18 @@ void zobraz(int16_t x) {
 void displej(uint16_t x){
   u8g2.setFont(u8g2_font_BBSesque_tf);
   u8g2.clearBuffer();
-  u8g2.setCursor(0, 15);
+  u8g2.setCursor(0, 9);
   u8g2.print("Desitkova hodnota");
-  u8g2.setFont(u8g2_font_fub30_tn);
+  u8g2.setFont(u8g2_font_fub25_tn);
   uint8_t pozice=(x>9999)?0:(x>999)?20:(x>99)?30:(x>9)?40:50;
-  u8g2.setCursor(pozice, 60);
+  u8g2.setCursor(pozice, 43);
   u8g2.print(x); 
+  u8g2.setFont(u8g2_font_BBSesque_tf);
+  u8g2.setCursor(0, 64);
+  u8g2.print("hex:  "); printHex(x);
   u8g2.sendBuffer();
   }
+
 
 
 /*************************************************************************
@@ -104,3 +108,21 @@ void led(uint16_t x){
   PORTB = x>>8;
   PORTD = x&0xFF;
   }
+
+/*************************************************************************
+* Název funkce: printHex
+**************************************************************************
+* Funkce pro zobrazení šestnáctkové hodnoty čísla
+* 
+* Parametry:
+*  uint16_t
+* 
+* Vrací:
+*  none (je udělaná primitivně, místo návratu řetězce přímo zobrazuje)
+*************************************************************************/
+void printHex(uint16_t x)
+{
+  if (x >= 16)
+    printHex(x / 16);
+  u8g2.print("0123456789ABCDEF"[x % 16]);
+}
