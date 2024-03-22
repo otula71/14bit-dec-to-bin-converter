@@ -99,7 +99,7 @@ void displej(uint16_t x){
 * Funkce pro zobrazení dvojkové hodnoty na řadě LED
 * 
 * Parametry:
-*  číslo v desítkovém tvaru
+*  číslo uint16_t
 * 
 * Vrací:
 *  none
