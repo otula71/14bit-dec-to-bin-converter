@@ -7,6 +7,10 @@ Jedno tlačítko funguje pro navyšování čísla, druhé pro zmenšování č�
 
 ![prevodnik](photo.jpg)
 
+Vzhledem k tomu, že dvojkovou soustavu lze snadno pouhým pohledem převádět na soustavu šestnáctkovou (nebo osmičkovou), doplnil jsem pár řádek kódu a přidal do spodního řádku displeje ještě šestnáctkový formát zvoleného čísla. Je na něm krásně vidět, jak každý blok 4 LED tvoří jednu číslici v této číselné soustavě (u osmičkové by to byly bloky 3 LED).
+
+![vylepsena-verze](photo2.jpg)
+
 ## Úprava s funkční sériovou komunikací
 Pokud bychom chtěli piny 0 a 1 (tedy RX a TX) nechat volné pro sériovou komunikaci, tak by se nám to zkomplikovalo. Ale stačí se nad tím jen trochu zamyslet a jde to vyřešit.
 Prvně bychom chtěli nastavit DDRD tak, abychom jedničku (OUTPUT) nastavili jen na piny 2-7, takže bychom binárně přičetli 11111100 (což je desítkově 252) k aktuálnímu stavu, tedy 
