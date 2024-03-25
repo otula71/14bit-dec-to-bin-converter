@@ -1,12 +1,11 @@
-#include <U8g2lib.h>
-U8G2_SSD1306_128X64_NONAME_F_SW_I2C u8g2(U8G2_R0, A5, A4, U8X8_PIN_NONE); 
+#include <U8glib.h>
+U8GLIB_SSD1306_128X64 u8g(U8G_I2C_OPT_NONE | U8G_I2C_OPT_DEV_0);
 int16_t cislo = 0; //používám signed int, aby mohl podtečení nuly srovnat pomocí constrain
 uint8_t cyklus=0;
 
 void setup(){
   DDRD = 0xFF;
   DDRB = 077; //nastavím všechny digitální piny jako výstupní
-  u8g2.begin();
   zobraz(cislo);
 }
 
@@ -77,18 +76,19 @@ void zobraz(int16_t x) {
 *  none
 *************************************************************************/
 void displej(uint16_t x){
-  u8g2.setFont(u8g2_font_BBSesque_tf);
-  u8g2.clearBuffer();
-  u8g2.setCursor(0, 9);
-  u8g2.print("Desitkova hodnota");
-  u8g2.setFont(u8g2_font_fub25_tn);
-  uint8_t pozice=(x>9999)?0:(x>999)?20:(x>99)?30:(x>9)?40:50;
-  u8g2.setCursor(pozice, 43);
-  u8g2.print(x); 
-  u8g2.setFont(u8g2_font_BBSesque_tf);
-  u8g2.setCursor(0, 64);
-  u8g2.print("hex:  "); u8g2.print(hex(x));
-  u8g2.sendBuffer();
+    u8g.firstPage();
+    do {
+    u8g.setFont(u8g_font_7x13);
+    u8g.drawStr(0, 9, "Desitkova hodnota");
+    uint8_t pozice=(x>9999)?10:(x>999)?20:(x>99)?30:(x>9)?40:50;
+    u8g.setFont(u8g_font_fub25);
+    u8g.setPrintPos(pozice, 43);
+    u8g.print(x);
+    u8g.setFont(u8g_font_7x13);
+    u8g.setPrintPos(0,64);
+    u8g.print("hex:  ");u8g.print(hex(x));
+    _delay_ms(10);
+    } while (u8g.nextPage());
   }
 
 
@@ -99,7 +99,7 @@ void displej(uint16_t x){
 * Funkce pro zobrazení dvojkové hodnoty na řadě LED
 * 
 * Parametry:
-*  číslo uint16_t
+*  číslo v desítkovém tvaru
 * 
 * Vrací:
 *  none
@@ -127,4 +127,3 @@ String hex(uint16_t x)
     x/=16;}
     return((z=="")?"0":z);
 }
-
