@@ -120,8 +120,8 @@ void led(uint16_t x){
 * Vrací:
 *  String
 *************************************************************************/
-String hex(uint16_t x)
-{String z;
+String hex(uint16_t x){
+  String z;
   while (x > 0) {
     z=("0123456789ABCDEF"[x % 16])+z;
     x/=16;}
