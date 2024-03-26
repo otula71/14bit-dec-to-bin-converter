@@ -6,6 +6,7 @@ uint8_t cyklus=0;
 void setup(){
   DDRD = 0xFF;
   DDRB = 077; //nastavím všechny digitální piny jako výstupní
+  u8g.begin();
   zobraz(cislo);
 }
 
@@ -60,6 +61,7 @@ void loop(){
 void zobraz(int16_t x) {
       displej(x);
       led(x);
+      _delay_ms(40); // malá prodleva kvůli tlačítkům
 }
 
 
@@ -80,14 +82,12 @@ void displej(uint16_t x){
     do {
     u8g.setFont(u8g_font_7x13);
     u8g.drawStr(0, 9, "Desitkova hodnota");
+    u8g.setPrintPos(0,64);
+    u8g.print("hex:  ");u8g.print(hex(x));
     uint8_t pozice=(x>9999)?10:(x>999)?20:(x>99)?30:(x>9)?40:50;
     u8g.setFont(u8g_font_fub25);
     u8g.setPrintPos(pozice, 43);
     u8g.print(x);
-    u8g.setFont(u8g_font_7x13);
-    u8g.setPrintPos(0,64);
-    u8g.print("hex:  ");u8g.print(hex(x));
-    _delay_ms(10);
     } while (u8g.nextPage());
   }
 
