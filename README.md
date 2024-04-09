@@ -17,3 +17,6 @@ Prvně bychom chtěli nastavit DDRD tak, abychom jedničku (OUTPUT) nastavili je
  `DDRD |= 252;`
 
 A potom bychom museli vyřešit zápis. Blok B je snadný, ten bychom posunuli pouze o 6 bitů: `PORTB = x>>6;` a blok D bychom museli zadat tak, abychom zachovali poslední 2 bity -- ty získáme tak, že aktuální stav vynásobíme binárně 00000011, tedy `PORTD&3`, naše číslo vynásobíme binárně 00111111, tedy `x&63` a posuneme o 2 bity doleva, tedy `(x&63)<<2` a získané dvě hodnoty spolu binárně sečteme, výsledek by tedy byl `PORTD = ((x&63)<<2)|(PORTD&3);` (ty závorky tam asi nejsou všechny potřeba, ale nechce se mi zjišťovat, co má před čím přednost).
+
+## Zajímavý rozdíl mezi Uno a Nano
+Když jsem zařízení zprovozňoval na desce Nano, bez problémů jsem program nahrál i při připojených LED na piny RX a TX. Když jsem ale chtěl totéž učinit s deskou Uno, tak to nešlo, při nahrávání programu je nutné od těchto pinů LED odpojit.
